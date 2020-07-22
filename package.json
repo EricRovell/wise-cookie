@@ -1,0 +1,30 @@
+{
+  "name": "wise-cookie",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": "sirv public --host",
+    "test": "ava",
+    "testVerbose": "ava --verbose"
+  },
+  "devDependencies": {
+    "@rollup/plugin-alias": "^3.1.1",
+    "@rollup/plugin-commonjs": "^12.0.0",
+    "@rollup/plugin-node-resolve": "^8.0.0",
+    "ava": "^3.10.0",
+    "mdsvex": "^0.8.2",
+    "rollup": "^2.21.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-svelte": "^5.2.3",
+    "rollup-plugin-terser": "^6.1.0",
+    "svelte": "^3.24.0"
+  },
+  "dependencies": {
+    "sirv-cli": "^1.0.3",
+    "svelte-spa-router": "^2.2.0"
+  }
+}
