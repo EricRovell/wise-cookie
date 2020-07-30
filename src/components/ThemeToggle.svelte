@@ -1,15 +1,52 @@
 <script>
+  import App from "@stores/App.js";
+  import { onMount } from "svelte";
+
   let toggle = false;
   $: href = `themes/${(toggle) ? "dark" : "light"}.css`;
+
+  onMount(async () => {
+    const theme = await $App.db.getTheme();
+    if (theme !== undefined) {
+      toggle = theme;
+    } else {
+      toggle = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  });
+
+  async function rememberTheme() {
+    await $App.db.setTheme(toggle);
+  }
 </script>
 
 <svelte:head>
   <link rel="stylesheet" {href}>
 </svelte:head>
 
+<!--
+  @component
+  Provides an action to change the application theme.
+  The component itself uses checkbox input under the hood which is hidden.
+
+  State:
+    - toggled = false
+
+  By default is not toggled and hence the default theme is "light":
+    - false -> "light"
+    - true -> "dark"
+
+  The href of the stylesheet is being constructed from toggled state:
+  "/themes/:theme.css"
+
+  On change remember the choice and writes to IDB.
+  On mount sets the users latest choice or preferenced theme if possible.
+-->
 <div>
   <label>
-    <input type="checkbox" bind:checked={toggle}>
+    <input
+      type="checkbox"
+      bind:checked={toggle}
+      on:change={rememberTheme}>
     <!-- Moon -->
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
       <path d="M96,67.57a47.64,47.64,0,0,1-19.77,4.26A48.12,48.12,0,0,1,28.16,23.77,47.32,47.32,0,0,1,32.42,4l1.82-4-4,1.8a51.38,51.38,0,1,0,68,68l1.8-4ZM75,90.48A48.06,48.06,0,1,1,27.73,6.78a50.67,50.67,0,0,0-2.88,17A51.43,51.43,0,0,0,76.23,75.14a50.92,50.92,0,0,0,17-2.88A48,48,0,0,1,75,90.48Z" style="fill: #fcd462"/>
