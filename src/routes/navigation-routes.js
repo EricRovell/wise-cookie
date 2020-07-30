@@ -1,7 +1,11 @@
 export default [
   {
-    label: "Search",
+    label: "Cookies",
     href: "/"
+  },
+  {
+    label: "Favourites",
+    href: "/favourites"
   },
   {
     label: "Help",
@@ -10,5 +14,5 @@ export default [
   {
     label: "About",
     href: "/about"
-  }
+  }  
 ];
