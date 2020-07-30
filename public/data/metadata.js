@@ -1,0 +1,27 @@
+export default new Map([
+  [
+    "inspiration",
+    [
+      22,
+      14
+    ]
+  ],
+  [
+    "nature",
+    [
+      17
+    ]
+  ],
+  [
+    "politics",
+    [
+      16
+    ]
+  ],
+  [
+    "relationship",
+    [
+      10
+    ]
+  ]
+]);
