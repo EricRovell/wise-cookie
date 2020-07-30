@@ -1,4 +1,55 @@
-Hello, it is me!
+<script>
+  import MrCookie from "@components/MrCookie.svelte";
+</script>
 
-- hi
-- two
+# Welcome
+
+<div class="inline">
+  <MrCookie />
+</div>
+
+Welcome to this little library of great wisdom! Nice to meet you! My name is Mr.Cookie and I am here to help you and tell you everything you need to know about this library of wisdom.
+
+It takes some time to prepare some cookie of wisdom for you. 8 hours, to be precise! So you can get 3 cookies per day. Come back for more! To "consume" a cookie, just click on it and you will get a bit of wisdom. If cookie is not ready yet, you will get the same phrase you got before and information when you should come back.
+
+# Phrase
+
+Phrases as an element are not that simple. Beside the phrase and it's author itself you have the dedicated control bar with some useful options. They make possible to:
+
+- to "Like" the phrase,
+- to Share the phrase with the world,
+- to Copy the phrase for your particular purposes,
+- to Get a URL link for this particular phrase.
+
+We will learn about each action in more detail now!
+
+# Favourites
+
+Phrases come and go. Sometimes you want to remember it and do not forget. That's why we have this section.
+The "Favourites" is your personal storage of favourite phrases you will never lose.
+
+To add any phrase to "favourites" just tap the heart of control bar for particular phrase. The same action is required to remove it from the storage.
+
+Please, remember, there is some restrictions about number of saved phrases. For now it is 15 phrases. Each time you try to add more the oldest one is removed. Never ending cycle of wisdom!
+
+<style>
+  h1 {
+    color: var(--color-3);
+    margin-top: 1em;
+  }
+
+  p {
+    text-indent: 0.75em;
+  }
+
+  ul {
+    list-style-type: circle;
+  }
+
+  /* uncommon */
+  .inline {
+    float: left;
+    width: 200px;
+    height: 200px;
+  }
+</style>
