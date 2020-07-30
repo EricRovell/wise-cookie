@@ -9,10 +9,12 @@
 
 <div class="header-wrapper">
   <header>
-    <div class="logo">
-      <Logo />
-      <h1>Color Wind</h1>
-    </div>
+    <a href="/#">
+      <div class="logo">
+        <Logo />
+        <h1>Wise Cookie</h1>
+      </div>
+    </a>
     <nav>
       <ol>
         {#each navRoutes as { label, href }}
@@ -57,6 +59,14 @@
 
   header:hover :global(svg .petals) {
     animation-play-state: running;
+  }
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
   }
 
   .logo {
@@ -105,11 +115,11 @@
     align-items: center;
   }
 
-  a:hover {
+  ol a:hover {
     color: var(--color-gray-1000) !important;
   }
 
-  a:hover::after {
+  ol a:hover::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -138,7 +148,7 @@
   }
 
 
-  @media screen and (max-width: 520px) {
+  @media screen and (max-width: 580px) {
 
     .header-wrapper {
       width: 100%;
@@ -147,7 +157,7 @@
 
     header {
       height: 50px;
-      padding: 0.25em 1em;
+      padding: 0.25em 1em 0 1em;
     }
 
     .logo h1 {
