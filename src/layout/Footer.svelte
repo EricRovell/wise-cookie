@@ -5,7 +5,7 @@
 <footer>
   <div class="container">
     <span>
-      Color Wind v.0.2
+      Wise Cookie v.0.1
     </span>
     <div class="author">
       <span>Made with</span>
@@ -19,6 +19,7 @@
 
 <style>
   footer {
+    width: 100%;
     padding: 0.75em 1.25em;
   }
 
@@ -31,7 +32,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: var(--max-width, 640px);
+    max-width: var(--max-width);
     margin: auto;
   }
 
