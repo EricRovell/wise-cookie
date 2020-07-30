@@ -38,6 +38,7 @@ export default {
       entries: [
         { find: "@src", replacement: "./src" },
         { find: "@root", replacement: "./" },
+        { find: "@public", replacement: "./public" },
         { find: "@components", replacement: "./src/components" },
         { find: "@util", replacement: "./src/util" },
         { find: "@routes", replacement: "./src/routes" },
