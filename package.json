@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
+    "build": "npm run phrasesmap && rollup -c",
+    "dev": "npm run phrasesmap && rollup -c -w",
     "start": "sirv public --host",
+    "phrasesmap": "node ./phrasesmap.js",
     "test": "ava",
     "testVerbose": "ava --verbose"
   },
@@ -24,6 +25,7 @@
     "svelte": "^3.24.0"
   },
   "dependencies": {
+    "idb-keyval": "^3.2.0",
     "sirv-cli": "^1.0.3",
     "svelte-spa-router": "^2.2.0"
   }
