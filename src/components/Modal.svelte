@@ -38,6 +38,7 @@
   @supports (backdrop-filter: blur(5px)) {
     .wrapper { 
       backdrop-filter: blur(3px);
+      z-index: 100;
     }
   }
 
