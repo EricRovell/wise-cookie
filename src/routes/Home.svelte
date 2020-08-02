@@ -50,6 +50,7 @@
     grid-template: 1fr / 1fr 250px;
     place-items: start center;
     column-gap: 2.25em;
+    width: 100%;
   }
 
   .mr-cookie {
