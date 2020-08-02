@@ -1,41 +1,125 @@
 <script>
+  import Cookie from "@components/svg/Cookie.svelte";
   import MrCookie from "@components/MrCookie.svelte";
 </script>
 
-# Welcome
+<svelte:head>
+  <title>Help from Wise Cookie</title>
+</svelte:head>
 
-<div class="inline">
-  <MrCookie />
+# # Welcome
+
+Welcome to this little library of great wisdom! Nice to meet you! My name is Mr.Cookie and I am here to help you and tell you everything you need to know about this kitchen of sweet wisdom.
+
+It takes us some time to prepare a cookie for you. 8 hours, to be precise! So you can get 3 cookies per day. Come back for more! To "consume" a cookie, just click on it and you will get a bit of wisdom. If cookie is not ready yet, you will get the information when how much time is left!
+
+Below you can see how cookies looks like. You may try to interact with them by tap to "eat" it or make it ready to be "eaten" again! These cookies are empty tho, so do not be surprised!
+
+<div class="cookies">
+  <Cookie size="50px" />
+  <Cookie size="50px" />
+  <Cookie size="50px" />
 </div>
 
-Welcome to this little library of great wisdom! Nice to meet you! My name is Mr.Cookie and I am here to help you and tell you everything you need to know about this library of wisdom.
+# # Library
 
-It takes some time to prepare some cookie of wisdom for you. 8 hours, to be precise! So you can get 3 cookies per day. Come back for more! To "consume" a cookie, just click on it and you will get a bit of wisdom. If cookie is not ready yet, you will get the same phrase you got before and information when you should come back.
+Phrases collection is vast and will be updated from time to time. To get how many unique phrases is still available for you personally, tap on Mr.Cookie and he will tell you the number. This value is dynamic and updates each time you get a new piece of wisdom.
 
-# Phrase
+Mr.Cookie also can help you to forget all the phrases you already seen and all the phrases will be unique again.
 
-Phrases as an element are not that simple. Beside the phrase and it's author itself you have the dedicated control bar with some useful options. They make possible to:
+# # Phrases
 
-- to "Like" the phrase,
+Beside the phrase and it's author itself you have the dedicated control bar with some useful options:
+
+<div class="options">
+  <svg
+    viewBox="0 0 100 100"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="var(--color-3)">
+      <title>Favourite</title>
+      <path d="M98,36.29c0,23.54-40.18,47.89-48,52.36C42.16,84.05,2,59.57,2,36.29A24.89,24.89,0,0,1,26.86,11.4,24.35,24.35,0,0,1,47.7,22.63a2.84,2.84,0,0,0,4,.63,2.69,2.69,0,0,0,.63-.63A24.89,24.89,0,0,1,98,36.29Z" />
+      <path d="M71.65,8.61h0A28.08,28.08,0,0,0,50,18.61a27.7,27.7,0,0,0-21.65-10A28.35,28.35,0,0,0,0,37C0,63.8,46.84,90,48.73,91a2.3,2.3,0,0,0,2.54,0C53.16,90,100,64.18,100,37A28.35,28.35,0,0,0,71.65,8.61ZM50,86C42.66,81.64,5.06,58.73,5.06,37A23.29,23.29,0,0,1,28.35,13.67a22.8,22.8,0,0,1,19.5,10.51,2.66,2.66,0,0,0,3.71.59,2.75,2.75,0,0,0,.59-.59A23.29,23.29,0,0,1,94.94,37C94.94,59,57.34,81.77,50,86Z" />
+  </svg>
+  <svg
+    viewBox="0 0 100 100"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="var(--color-3)">
+      <title>Share</title>
+      <path d="M80.21,31.25A15.63,15.63,0,1,1,95.83,15.63,15.65,15.65,0,0,1,80.21,31.25Zm0-25a9.38,9.38,0,1,0,9.37,9.38A9.39,9.39,0,0,0,80.21,6.25Z" />
+      <path d="M80.21,100A15.63,15.63,0,1,1,95.83,84.38,15.65,15.65,0,0,1,80.21,100Zm0-25a9.38,9.38,0,1,0,9.37,9.38A9.39,9.39,0,0,0,80.21,75Z" />
+      <path d="M19.79,65.62A15.62,15.62,0,1,1,35.42,50,15.63,15.63,0,0,1,19.79,65.62Zm0-25A9.38,9.38,0,1,0,29.17,50,9.38,9.38,0,0,0,19.79,40.63Z" />
+      <path d="M30.67,47a3.12,3.12,0,0,1-1.55-5.84l38.66-22a3.13,3.13,0,0,1,3.1,5.43l-38.67,22A3.17,3.17,0,0,1,30.67,47Z" />
+      <path d="M69.33,81.33a3.07,3.07,0,0,1-1.54-.41l-38.67-22a3.13,3.13,0,0,1,3.1-5.43l38.66,22a3.12,3.12,0,0,1-1.55,5.84Z" />
+  </svg>
+  <svg
+    viewBox="0 0 100 100"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="var(--color-3)">
+      <title>Copy</title>
+      <path d="M64.36,17.49H17.87A7.91,7.91,0,0,0,10,25.39V92.1a7.91,7.91,0,0,0,7.91,7.9H64.36a7.9,7.9,0,0,0,7.9-7.9V25.39A7.93,7.93,0,0,0,64.36,17.49Zm2.35,74.58a2.37,2.37,0,0,1-2.37,2.38H17.85a2.38,2.38,0,0,1-2.38-2.38V25.39A2.38,2.38,0,0,1,17.85,23H64.34a2.37,2.37,0,0,1,2.37,2.37Z" />
+      <path d="M82.13,0H35.64a7.9,7.9,0,0,0-7.9,7.9,2.77,2.77,0,1,0,5.53,0,2.37,2.37,0,0,1,2.37-2.37H82.13A2.38,2.38,0,0,1,84.51,7.9V74.61A2.38,2.38,0,0,1,82.13,77a2.77,2.77,0,0,0,0,5.53A7.91,7.91,0,0,0,90,74.61V7.9A7.91,7.91,0,0,0,82.13,0Z" />
+  </svg>
+  <svg
+    viewBox="0 0 100 100"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="var(--color-3)">
+      <path d="M24.24,100A24.23,24.23,0,0,1,7.11,58.62l9-9a33.78,33.78,0,0,0,1,8.34l-6,6A17.62,17.62,0,0,0,36,89L62.1,62.81a17.65,17.65,0,0,0-6.52-29l5-5a23.69,23.69,0,0,1,8.09,6.64,24.56,24.56,0,0,1,4.67,10.26,23.9,23.9,0,0,1-6.3,21.5c-.49.49-.58.59-.62.64L41.38,92.89A24.05,24.05,0,0,1,24.24,100Z" />
+      <path d="M39.41,71.19A24.37,24.37,0,0,1,26.63,54.24,23.85,23.85,0,0,1,33,32.79L58.64,7.09A24.23,24.23,0,1,1,92.91,41.36L84,50.29A34.87,34.87,0,0,0,82.91,42l5.32-5.32A17.62,17.62,0,1,0,63.32,11.76L37.15,37.93a17.65,17.65,0,0,0,6.56,29Z" />
+  </svg>
+  <span>Favourite</span>
+  <span>Share</span>
+  <span>Copy</span>
+  <span>URL</span>
+</div>
+
+They make possible for us to:
+
+- to "Like" the phrase and make it favourite,
 - to Share the phrase with the world,
-- to Copy the phrase for your particular purposes,
+- to Copy the phrase itself for your particular purposes,
 - to Get a URL link for this particular phrase.
 
 We will learn about each action in more detail now!
 
-# Favourites
+## Favourites
 
-Phrases come and go. Sometimes you want to remember it and do not forget. That's why we have this section.
-The "Favourites" is your personal storage of favourite phrases you will never lose.
+Sometimes you might like the phrase and save it for yourself to remember it and do not forget. That's why we it is possible to mark phrases as "favourites". Just tap oh a heart to mark to make it happen. Do it again if you want to remove it.
 
-To add any phrase to "favourites" just tap the heart of control bar for particular phrase. The same action is required to remove it from the storage.
+After that you can find marked phrases in <a href="/#/favourites">"Favourites"</a> section of website. It is your personal storage you will never lose. All the information is stored on your device's web browser and no data is transmitted.
 
-Please, remember, there is some restrictions about number of saved phrases. For now it is 15 phrases. Each time you try to add more the oldest one is removed. Never ending cycle of wisdom!
+Please, remember, there is some restrictions about the number of saved phrases. For now it is 100 phrases. Each time you try to add more the oldest one is removed. Never ending cycle of wisdom! Nevertheless the phrases takes up a little storage, we do not want to clutter your device's memory.
+
+## Share
+
+This control button provides us the action to share a phrase, like you can share media and link using native applications. Unfortunately, this feature is not widely available for every browser yet (mostly apple devices and the latest Chrome for Android).
+
+If it is not supported by your browser, the URL for the phrase will be copied to clipboard instead.
+
+## Copy
+
+This control button provides the user with the shortcut to copy the phrase to the clipboard to share it with someone else or save it somewhere else. 
+
+## URL link
+
+This control button provides a permanent portal to this particular phrase. It is usefull many reasons, as it provides a way to find a this phrase just by using the link which you can share and save to your bookmarks.
+
+<div class="mr-cookie">
+  <MrCookie type="glasses" />
+</div>
 
 <style>
   h1 {
     color: var(--color-3);
     margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-size: 1.4em;
+  }
+
+  h2 {
+    color: var(--color-3);
+    margin-top: 1em;
+    margin-bottom: 0.1em;
+    font-size: 1.1em;
   }
 
   p {
@@ -43,13 +127,48 @@ Please, remember, there is some restrictions about number of saved phrases. For 
   }
 
   ul {
-    list-style-type: circle;
+    list-style: none;
+    counter-reset: options;
   }
 
-  /* uncommon */
-  .inline {
-    float: left;
-    width: 200px;
-    height: 200px;
+  ul li {
+    counter-increment: options
+  }
+
+  ul li:before {
+    content: counter(options) ". ";
+  }
+
+  .cookies {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.5em;
+  }
+
+  .options {
+    display: grid;
+    grid-template: 1.5em 1em / repeat(4, 1.5em);
+    row-gap: 0.75em;
+    column-gap: 4em;
+    place-content: center;
+    place-items: center;
+    padding: 0.5em;
+  }
+
+  .mr-cookie {
+    width: 150px;
+    height: 150px;
+
+    position: sticky;
+    bottom: 0.5em;
+    left: 100%;
+  }
+
+  @media screen and (max-width: 720px) {
+    .mr-cookie {
+      width: 25vw;
+      height: 25vw;
+    }
   }
 </style>
