@@ -75,7 +75,7 @@
     display: grid;
     grid-auto-flow: column;
     place-items: center;
-    column-gap: 0.25em;
+    column-gap: 0.5em;
   }
 
 	h1 {
@@ -145,6 +145,7 @@
 
   .controls {
     grid-area: controls;
+    justify-self: end;
   }
 
 
@@ -158,9 +159,31 @@
     header {
       height: 50px;
       padding: 0.25em 1em 0 1em;
+      column-gap: 1em;
     }
 
+    nav ol {
+    display: grid;
+    grid-auto-flow: column;
+    column-gap: 0.5em;
+  }
+
     .logo h1 {
+      display: none;
+    }
+
+  }
+
+  @media screen and (max-width: 380px) {
+
+    header {
+      grid-template: 1fr / auto auto;
+      grid-template-areas: "navigation auto controls";
+      place-items: center start;
+      padding: 0.25em 0.5em 0 0.5em;
+    }
+
+    .logo {
       display: none;
     }
 
