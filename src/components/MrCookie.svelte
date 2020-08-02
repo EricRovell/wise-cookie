@@ -1,18 +1,11 @@
 <script>
-  import modal from "@stores/modal.js";
-  import Library from "@components/modals/Library.svelte";
-
-  function dialogue() {
-    modal.set({
-      title: "Information from MrCookie",
-      contents: Library
-    });
-  }
+  export let type = "clever";
+  export let handleClick = () => window.scrollTo(0, 0);
 </script>
 
-<picture on:click={dialogue}>
-  <source srcset="/images/ChocolateChipCookie.webp" type="image/webp" alt="Mr.Cookie">
-  <img src="/images/ChocolateChipCookie.png" type="image/png" alt="Mr.Cookie">
+<picture on:click={handleClick}>
+  <source srcset={`/images/cookie-${type}.webp`} type="image/webp" alt="Mr.Cookie">
+  <img src={`/images/cookie-${type}.png`} type="image/png" alt="Mr.Cookie">
 </picture>
 
 <!--
@@ -21,25 +14,13 @@
 -->
 <style>
   picture {
-    position: sticky;
-    top: 10px;
-
-    width: 275;
-    height: 275px;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
   }
 
   picture img {
     width: 100%;
-    height: auto;
-  }
-
-  @media screen and (max-width: 720px) {
-    picture {
-      place-self: end end;
-      bottom: 10px;
-
-      width: 40vw;
-      height: 40vw;
-    }
+    height: 100%;
   }
 </style>
