@@ -71,3 +71,14 @@ button:focus {
 ol, li {
   list-style: none;
 }
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-gray-300);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-500);
+  border-radius: 20px;
+}
