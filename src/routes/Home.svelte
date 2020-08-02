@@ -1,10 +1,14 @@
 <script>
+  import { onMount } from "svelte";
+  import App from "@stores/app.js";
+
   import FadingWrapper from "@src/layout/FadingWrapper.svelte";
   import MrCookie from "@components/MrCookie.svelte";
   import CookiePhrases from "@components/CookiePhrases.svelte";
   
   import modal from "@stores/modal.js";
   import Library from "@components/modals/Library.svelte";
+  import Greetings from "@components/modals/Greetings.svelte";
 
   function dialogue() {
     modal.set({
@@ -12,6 +16,17 @@
       contents: Library
     });
   }
+
+  onMount(async () => {
+    const userGuest = await $App.db.userGuest();
+
+    if (userGuest) {
+      modal.set({
+        title: "Greetings!",
+        contents: Greetings
+      });
+    }  
+  });
 </script>
 
 <svelte:head>
