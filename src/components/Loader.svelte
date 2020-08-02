@@ -2,33 +2,59 @@
   import { fade } from "svelte/transition";
 </script>
 
-<div transition:fade>
-  <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 27">
-    <title>Untitled-1</title>
-    <path d="M98,2V25H2V2H98m2-2H0V27H100V0Z"/>
-    <text
-      x="50%"
-      y="50%"
-      dominant-baseline="middle"
-      text-anchor="middle"
-      style="font-size: 10px;font-family: MyriadPro-Regular, Myriad Pro">
-        Loading...
-    </text>
-    <path d="M98,2V25H2V2H98m2-2H0V27H100V0Z"/>
-  </svg>
+<div class="container">
+  <div transition:fade class="loader" />
 </div>
 
 <style>
-  div {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     width: 100%;
+    padding: 1em;
   }
 
-  svg {
-    width: 120px;
-    height: 50px;
+  .loader::before,
+  .loader::after {
+    content:"";
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    background:var(--color-3, #58bd55);
   }
-
-  text {
-    color: var(--color-3);
+  
+  .loader::before{
+    animation: loader-animate-before 1s ease-in-out infinite;
+  }
+  
+  .loader::after{
+    animation:loader-animate-after 1s ease-in-out infinite
+  }
+  
+  @keyframes loader-animate-before {
+    0% {
+      transform:translateX(-24px) rotate(45deg)
+    }
+    50% {
+      transform:translateX(-8px) rotate(225deg)
+    }
+    
+    100% {
+      transform:translateX(-24px) rotate(45deg)
+    }
+  }
+    
+  @keyframes loader-animate-after {
+    0% {
+      transform:translateX(24px) rotate(45deg)
+    }
+    50% {
+      transform:translateX(8px) rotate(-225deg)
+    }
+    100% {
+      transform:translateX(24px) rotate(45deg)
+    }
   }
 </style>
