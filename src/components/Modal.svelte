@@ -48,13 +48,15 @@
     row-gap: 1em;
     justify-items: stretch;
 
-    width: 400px;
-    height: 500px;
+    max-width: 500px;
+    max-height: 500px;
     background: var(--bg);
     border-radius: 10px;
     padding: 1.75em 1.25em;
 
     border: 1px solid var(--color-3-35);
+
+    overflow-y: auto;
   }
 
   header {
@@ -64,5 +66,12 @@
     width: 100%;
 
     text-align: center;
+  }
+
+  @media screen and (max-width: 640px) {
+    .modal {
+      max-width: 75vw;
+      max-height: 70vh;
+    }
   }
 </style>
