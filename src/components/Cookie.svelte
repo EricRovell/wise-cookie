@@ -1,27 +1,27 @@
 <script>
   import App from "@stores/app.js";
   import modal from "@stores/modal.js";
-  import { onMount, onDestroy } from "svelte";
+  import { onMount, onDestroy, createEventDispatcher } from "svelte";
 
+  import Cookie from "@components/svg/Cookie.svelte";
   import Countdown from "@components/Countdown.svelte";
 
+  let dispatch = createEventDispatcher();
+
   export let index = 0;
-  export let eatingCookieEvent;
-
-  let ready = true;
-
+  let eaten = false;
   let timeout;
 
   function setTimer(time) {
     timeout = setTimeout(() => {
-      ready = true;
+      eaten = false;
     }, time);
   }
 
   /* set cookie readiness */
   onMount(async () => {
     const { status, timestamp } = await $App.db.timestampStatus(index);
-    ready = status;
+    eaten = !status;
 
     // if cookie is not ready, set a timer to update
     if (!status) {
@@ -31,16 +31,8 @@
   });
 
   async function crackCookie() {
-    eatingCookieEvent(index);
 
-    if (ready) {
-      ready = !ready;
-      setTimer($App.db.COOKIE_TIME);
-    }
-  }
-
-  async function showTime() {
-    if (!ready) {
+    if (eaten) {
       modal.set({
         title: "Countdown",
         contents: Countdown,
@@ -48,7 +40,12 @@
           timestamp: await $App.db.getTimeLeft(index)
         }
       });
+      return;
     }
+
+    dispatch("eatingcookie", { index });
+    eaten = !eaten;
+    setTimer($App.db.COOKIE_TIME);   
   }
 
   onDestroy(() => {
@@ -82,29 +79,8 @@
 
   To prevent leaks, the timeout state variable is used to clear all active setTimeout intervals.
 -->
-<div
-  class:ready
-  on:click={showTime}
-  on:click={crackCookie}  
+<Cookie
+  size="50px"
+  handleClick={crackCookie}
+  {eaten}
 />
-
-<style>
-  div {
-    width: 50px;
-    height: 50px;
-    background: red;
-    border-radius: 50%;
-    transition:
-      transform 0.4s ease-in-out
-      background 0.4s ease-in-out;
-
-    transform: scale(0.8);
-
-    cursor: pointer;
-  }
-
-  .ready {
-    background: var(--color-3);
-    transform: scale(1);
-  }
-</style>
