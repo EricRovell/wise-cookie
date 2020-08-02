@@ -1,8 +1,8 @@
-import { get, set } from "idb-keyval";
+import { get, set, del } from "idb-keyval";
 
 export default class DB {
   constructor() {
-    this.COOKIE_TIME = 10000;
+    this.COOKIE_TIME = 8 * 60 * 60 * 1000;
     this.FAVOURITES_LIMIT = 100;
   }
 
@@ -116,22 +116,9 @@ export default class DB {
    * Returns the last generated phrase object.
    * @returns {object} - Phrase data object.
    */
-  async lastPhraseRecord() {
+  async lastPhraseRecords() {
     try {
-      const timestamps = await get("timestamp");
-
-      // nothing stored
-      if (!timestamps) return null;
-
-      // return the first valid phrase
-      for (let { timestamp, phrase } of timestamps.values()) {
-        if (phrase) {
-          return phrase;
-        }
-      }
-
-      // no valid record
-      return null;
+      return await get("timestamp") || null;
     } catch (error) {
       console.log(error.message);
     }
@@ -220,6 +207,10 @@ export default class DB {
   async getCookiesEaten() {
     const history = await get("history") || new Set();
     return history.size;
+  }
+
+  async resetHistory() {
+    await del("history");
   }
 
 
