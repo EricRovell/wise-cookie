@@ -7,6 +7,12 @@ export default new Map([
     ]
   ],
   [
+    "murphy",
+    [
+      27
+    ]
+  ],
+  [
     "nature",
     [
       17
