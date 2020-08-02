@@ -37,22 +37,6 @@
   </div>
 </article>
 
-<svelte:head>
-  <!-- og -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="European Travel, Inc.">
-  <meta property="og:title" content="Wise Cookie">
-  <meta property="og:description" content="Get you daily dose of inspiration!">
-  <meta property="og:image" content="https://wise-cookie.com/images/wise-cookie.webp">
-  <meta property="og:url" content="https://wise-cookie.com">
-  <!--Twitter-->
-  <meta name="twitter:title" content="European Travel Destinations ">
-  <meta name="twitter:description" content=" Offering tour packages for individuals or groups.">
-  <meta name="twitter:image" content=" http://euro-travel-example.com/thumbnail.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image:alt" content="Alt text for image">
-</svelte:head>
-
 <style>
   article {
     position: relative;
