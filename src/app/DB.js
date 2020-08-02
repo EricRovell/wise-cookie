@@ -8,6 +8,16 @@ export default class DB {
 
   /* user preferences */
 
+  async userGuest() {
+    const record = await get("guest");
+    if (!record) {
+      await set("guest", true);
+      return true;
+    }
+
+    return false;
+  }
+
   /**
    * Stores the desired theme value.
    * @param {string} theme 
