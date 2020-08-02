@@ -38,7 +38,7 @@ export default class App {
    * @returns {string} - The phrase ID.
    */
   async uniqueRandom() {
-    let id; 
+    let id;
     
     do {
       id = this.Randomizer.randomID();
@@ -55,17 +55,14 @@ export default class App {
    * @returns {Phrase} - The phrase instance.
    */
   async eatCookie(index) {
-    const { status, phrase } = await this.DB.timestampStatus(index);
+    const { status } = await this.DB.timestampStatus(index);
     if (status) {
       // cookie is ready: generate new phrase -> set timestamp with phrase
-
       const id = await this.uniqueRandom();
       const nextPhrase = await this.Phrase.fromID(id);
 
       await this.DB.setTimestamp(index, nextPhrase.toObject());
       return nextPhrase;
-    } else {
-      return new this.Phrase(phrase);
     }
   }
 
@@ -73,12 +70,13 @@ export default class App {
    * Gets the latest generated phrase if present.
    * @returns {Phrase} - the Phrase instance.
    */
-  async lastPhrase() {
-    const record = await this.DB.lastPhraseRecord();
+  async lastPhrases() {
+    const records = await this.DB.lastPhraseRecords();
 
-    return (record)
-      ? new this.Phrase(record)
-      : null;
+    if (!records) return [];
+    return Array.from(records.values(), value => {
+      return new this.Phrase(value.phrase);
+    });
   }
 
 }
