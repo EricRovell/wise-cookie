@@ -1,0 +1,24 @@
+{
+  "extends": "@tsconfig/svelte/tsconfig.json",
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+
+  "compilerOptions": {
+    "removeComments": true,
+    "module": "es2020",
+    "target": "es2020",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": [ "src/*"],
+      "@public/*": [ "public/*" ],
+      "@app/*": [ "src/app/*" ],
+      "#types/*": [ "src/types/*" ],
+      "@layout/*": [ "src/layout/*" ],
+      "@routes/*": [ "src/routes/*" ],
+      "@components/*": [ "src/components/*" ],
+      "@util/*": [ "src/util/*" ],
+      "@stores/*": [ "src/stores/*" ]
+    }
+  }
+}
