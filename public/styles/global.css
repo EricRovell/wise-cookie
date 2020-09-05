@@ -7,7 +7,7 @@
 }
 
 :root {
-  --max-width: 720px;
+  --max-width: 920px;
 
   color: var(--color-gray-800);
   font-family: var(--font-regular), sans-serif;
