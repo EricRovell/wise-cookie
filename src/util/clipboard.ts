@@ -1,11 +1,11 @@
-export default async function copyToClipboard(text) {
+export default async function copyToClipboard(text: string): Promise<boolean> {
   // Clipboard API
   if (navigator.clipboard) {
     try {
       await navigator.clipboard.writeText(text);
-      return;
+      return true;
     } catch (error) {
-      console.log("Something is wrong...");
+      console.error("Something is wrong:", error.message);
     }
   }
 
@@ -14,8 +14,8 @@ export default async function copyToClipboard(text) {
   input.value = text;
 
   // avoid scrolling
-  input.style.top = 0;
-  input.style.left = 0;
+  input.style.top = "0";
+  input.style.left = "0";
   input.style.position = "fixed";
 
   document.body.appendChild(input);
@@ -25,10 +25,13 @@ export default async function copyToClipboard(text) {
   try {
     document.execCommand("copy");
   } catch (error) {
-    console.log(error.message);
+    console.error("Something is wrong:", error.message);
+    return false;
+  } finally {
+    document.body.removeChild(input);
   }
 
-  document.body.removeChild(input);  
+  return true;
 }
 
 
