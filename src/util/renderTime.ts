@@ -3,7 +3,7 @@
  * @param {number} timestamp - number of milliseconds.
  * @return {string} Time string as HH : MM : SS. 
  */
-export default function renderTime(timestamp) {
+export default function renderTime(timestamp: number): string {
   let milliseconds = timestamp;
 
   let hours = Math.floor(milliseconds / 3600000);
