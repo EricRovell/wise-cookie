@@ -13,7 +13,7 @@
       "@src/*": [ "src/*"],
       "@public/*": [ "public/*" ],
       "@app/*": [ "src/app/*" ],
-      "#types/*": [ "src/types/*" ],
+      "#types": [ "src/types/index.ts" ],
       "@layout/*": [ "src/layout/*" ],
       "@routes/*": [ "src/routes/*" ],
       "@components/*": [ "src/components/*" ],
