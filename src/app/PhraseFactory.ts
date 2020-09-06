@@ -1,7 +1,7 @@
 import map from "@public/data/map";
 import Random from "./Random";
 
-import type { Phrase, PhraseID } from "#types/types";
+import type { Phrase, PhraseID } from "#types";
 
 /**
  * Phrases constructor class. 
