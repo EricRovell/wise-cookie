@@ -3,8 +3,8 @@ import { get, set, del } from "idb-keyval";
 import type {
   Theme, CookieIndex, UniqueCookies,
   Phrase, PhraseID,
-  PhrasesHistory, PhrasesFavourite, PhrasesCurrent, PhraseIDString
-} from "#types/types";
+  PhrasesHistory, PhrasesFavourite, PhrasesCurrent, PhraseIDString, PhraseWithTimestamp
+} from "#types";
 
 export default class DB {
   static FAVOURITES_LIMIT: number = 100;
@@ -52,7 +52,7 @@ export default class DB {
   /**
    * Sets timestamp on phrase object and store it as current user's phrases.
    */
-  public static async setCurrentPhrase(index: CookieIndex, phrase: Phrase): Promise<void> {
+  public static async setCurrentPhrase(index: CookieIndex, phrase: Phrase): Promise<PhraseWithTimestamp> {
     try {
       const current: PhrasesCurrent = await get("timestamp") || new Map();
       current.set(index, {
@@ -61,6 +61,7 @@ export default class DB {
       });
 
       await set("timestamp", current);
+      return current.get(index);
     } catch (error) {
       console.error(error.message);
     }
