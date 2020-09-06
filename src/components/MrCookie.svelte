@@ -1,5 +1,7 @@
-<script>
-  export let type = "clever";
+<script lang="ts">
+  import type { MrCookieType } from "#types";
+
+  export let type: MrCookieType = "clever";
   export let handleClick = () => window.scrollTo(0, 0);
 </script>
 
