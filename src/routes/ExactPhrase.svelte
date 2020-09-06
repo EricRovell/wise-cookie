@@ -1,13 +1,17 @@
-<script>
-  import App from "@stores/app.js"; 
+<script lang="ts">
+  import PhraseFactory from "@app/PhraseFactory";
+  import type { PhraseRouteParams, PhraseFactoryClassType, PhraseID } from "#types";
 
   import Loader from "@components/Loader.svelte";
-  import Phrase from "@components/Phrase.svelte";
+  import Phrase from "@components/Phrase/Phrase.svelte";
 
-  // category, #pack, #position
-  export let params = {};
+  // get fragment and position
+  export let params = {} as PhraseRouteParams;
+  let id: PhraseID = [ +params.fragment, +params.position ];
 
-  let promise = $App.phrase.fromURL(params);
+  $: id = [ +params.fragment, +params.position ];
+
+  $: promise = PhraseFactory.fromID(id);
 </script>
 
 <svelte:head>
@@ -37,6 +41,6 @@
   {:then phrase}
     <Phrase {phrase} />
   {:catch error}
-    <p>Something is wrong: {error}</p>
+    <p>Something is wrong: {error.message}</p>
   {/await}
 </div>
