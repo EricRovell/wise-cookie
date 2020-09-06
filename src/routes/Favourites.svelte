@@ -1,22 +1,22 @@
-<script>
-  import App from "@stores/app.js";
+<script lang="ts">
+  import User from "@app/User";
 
-  import FadingWrapper from "@src/layout/FadingWrapper.svelte";
-  import Phrase from "@components/Phrase.svelte";
+  import FadingWrapper from "@layout/FadingWrapper.svelte";
+  import Phrase from "@components/Phrase/Phrase.svelte";
   import MrCookie from "@components/MrCookie.svelte";
 </script>
 
 <svelte:head>
-  <title>Favouries: Your personal storage</title>
+  <title>Cookie Favouries: Your personal storage</title>
 </svelte:head>
 
 <FadingWrapper>
   <div class="container">
-    {#await $App.db.getFavourites()}
+    {#await User.getFavouritePhrasesList()}
       <p>Loading...</p>
     {:then phrases}
-      {#each phrases as [ id, phrase ]}
-        <Phrase phrase={new $App.phrase({ id, ...phrase })} />
+      {#each phrases as phrase}
+        <Phrase {phrase} />
       {:else}
         <div class="empty-list">
           <MrCookie type="shocked" />
@@ -24,7 +24,7 @@
         </div>
       {/each}
     {:catch error}
-      <p>Something is wrong: {error}</p>
+      <p>Something is wrong: {error.message}</p>
     {/await}
   </div>
 </FadingWrapper>
