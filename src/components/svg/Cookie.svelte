@@ -1,7 +1,7 @@
-<script>
-  export let eaten = false;
+<script lang="ts">
+  export let eaten: boolean = false;
   export let size = "24px";
-  export let handleClick = () => eaten = !eaten;
+  export let handleClick;
 </script>
 
 <svg 
