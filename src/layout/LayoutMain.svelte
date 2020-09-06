@@ -5,10 +5,12 @@
 
 <!--
   @component
-  Main Layout component.
+  Main (and only one) Root Layout component.
   Contains the persistent components across all application:
     - Header,
     - Footer.
+
+  Dynamic content is located inside the slot of the .content element. 
 -->
 <main id="layout-main">
   <Header />
@@ -23,6 +25,8 @@
     display: grid;
     place-items: center;
     width: 100%;
+
+    padding: 0 1em;
   }
 
   .content {
@@ -36,9 +40,9 @@
     padding-top: 1.5em;
   }
 
-  @media screen and (max-width: 720px) {
+  @media screen and (max-width: 450px) {
     .content {
-      padding: 0 0.5em;
+      padding: 0 0.25em;
     }
   }
 </style>
