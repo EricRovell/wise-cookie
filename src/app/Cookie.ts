@@ -4,7 +4,7 @@ import Random from "./Random";
 
 import map from "@public/data/map.js";
 
-import type { CookieIndex, PhraseID, Phrase, PhrasesCurrent, PhraseIDString } from "#types/types";
+import type { CookieIndex, PhraseID, Phrase, PhrasesCurrent, PhraseWithTimestamp } from "#types";
 
 /**
  * Provides methods to work with cookies.
@@ -17,15 +17,14 @@ export default class Cookie {
    * Generates a new phrase by eating a cookie if it's "ready".
    * Otherwise, returns the previously generated phrase for this cookie.
    */
-  public static async eatCookie(index: CookieIndex): Promise<Phrase> {
+  public static async eatCookie(index: CookieIndex): Promise<PhraseWithTimestamp> {
     const status = await this.getCookieStatus(index);
     if (status) {
       // cookie is ready: generate new phrase -> set timestamp with phrase
       const id: PhraseID = await this.getUniqueRandomID();
       const phrase: Phrase = await PhraseFactory.fromID(id);
 
-      await db.setCurrentPhrase(index, phrase);
-      return phrase;
+      return await db.setCurrentPhrase(index, phrase);
     }
   }
 
