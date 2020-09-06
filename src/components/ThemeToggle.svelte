@@ -1,21 +1,34 @@
-<script>
-  import App from "@stores/App.js";
+<script lang="ts">
   import { onMount } from "svelte";
 
-  let toggle = false;
-  $: href = `themes/${(toggle) ? "dark" : "light"}.css`;
+  import User from "@app/User";
+  import type { UserClassType, Theme } from "#types";
+
+  import notificationsCentre from "@components/notification/index";
+
+  let light = true; // toggled -> chosen light (defaults)
+  $: currentTheme = light ? "light" : "dark" as Theme;
+  $: href = `themes/${currentTheme}.css`;
+  
 
   onMount(async () => {
-    const theme = await $App.db.getTheme();
-    if (theme !== undefined) {
-      toggle = theme;
-    } else {
-      toggle = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
-    }
+    const theme: Theme = await User.getPreferredTheme();
+
+    // no records -> get info from browser, otherwise convert to bool
+    light = (theme === "none") 
+      ? (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches)
+      : (theme === "light");
   });
 
   async function rememberTheme() {
-    await $App.db.setTheme(toggle);
+    await User.changeTheme(currentTheme);
+
+    notificationsCentre.addNotification({
+      type: "success",
+      text: `Theme successfully set to ${currentTheme}.`,
+      position: "bottom-right",
+      removeAfter: 1500
+    });
   }
 </script>
 
@@ -41,78 +54,186 @@
   On change remember the choice and writes to IDB.
   On mount sets the users latest choice or preferenced theme if possible.
 -->
-<div>
-  <label>
-    <input
-      type="checkbox"
-      bind:checked={toggle}
-      on:change={rememberTheme}>
-    <!-- Moon -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-      <path d="M96,67.57a47.64,47.64,0,0,1-19.77,4.26A48.12,48.12,0,0,1,28.16,23.77,47.32,47.32,0,0,1,32.42,4l1.82-4-4,1.8a51.38,51.38,0,1,0,68,68l1.8-4ZM75,90.48A48.06,48.06,0,1,1,27.73,6.78a50.67,50.67,0,0,0-2.88,17A51.43,51.43,0,0,0,76.23,75.14a50.92,50.92,0,0,0,17-2.88A48,48,0,0,1,75,90.48Z" style="fill: #fcd462"/>
-    </svg>
-    <!-- Sun -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-      <circle cx="50" cy="50" r="28.75" style="fill: #fcd462"/>
-      <g>
-        <path d="M63.63,24.63a47,47,0,0,1,2.25,12.62c.75,17.38-11,32.75-26.25,39.5a28.75,28.75,0,0,0,24-52.12Z" style="fill: #f6c358"/>
-        <path d="M50,0a4.21,4.21,0,0,0-4.25,4.25v7a4.25,4.25,0,0,0,8.5,0v-7A4.21,4.21,0,0,0,50,0Z" style="fill: #f6c358"/>
-        <path d="M50,84.5a4.21,4.21,0,0,0-4.25,4.25v7a4.25,4.25,0,0,0,8.5,0v-7A4.21,4.21,0,0,0,50,84.5Z" style="fill: #f6c358"/>
-        <path d="M100,50a4.21,4.21,0,0,0-4.25-4.25h-7a4.25,4.25,0,0,0,0,8.5h7A4.21,4.21,0,0,0,100,50Z" style="fill: #f6c358"/>
-        <path d="M15.5,50a4.21,4.21,0,0,0-4.25-4.25h-7a4.25,4.25,0,0,0,0,8.5h7A4.22,4.22,0,0,0,15.5,50Z" style="fill: #f6c358"/>
-        <path d="M85.38,14.62a4.31,4.31,0,0,0-6,0l-5,5a4.24,4.24,0,0,0,6,6l5-5A4.31,4.31,0,0,0,85.38,14.62Z" style="fill: #f6c358"/>
-        <path d="M25.62,74.37a4.31,4.31,0,0,0-6,0l-5,5a4.24,4.24,0,0,0,6,6l5-5A4.29,4.29,0,0,0,25.62,74.37Z" style="fill: #f6c358"/>
-        <path d="M85.38,85.37a4.31,4.31,0,0,0,0-6l-5-5a4.24,4.24,0,0,0-6,6l5,5A4.29,4.29,0,0,0,85.38,85.37Z" style="fill: #f6c358"/>
-        <path d="M25.62,25.62a4.29,4.29,0,0,0,0-6l-5-5a4.24,4.24,0,0,0-6,6l5,5A4.29,4.29,0,0,0,25.62,25.62Z" style="fill: #f6c358"/>
-      </g>
-    </svg>
-    <!-- Toggle -->
-    <span />
-  </label>
-</div>
+<label>
+  <input type="checkbox" bind:checked={light} on:change={rememberTheme}>
+  <div class="planet" />
+  <div class="elements">
+    {#each new Array(8) as _}
+      <svg viewBox="0 0 500 500">
+        <circle cx="250" cy="250" r="200" />
+      </svg>
+    {/each}
+  </div>
+</label>
 
 <style>
   label {
-    --size: 1em;
+    --size: 35px;
+    --factor: calc(0.25 * var(--size));
 
+    --bg-planet-bright: #F2C94C;
+    --bg-planet-shadow: #828894;
+    --bg-planet-lightshadow: #D7D7D820;
+
+    cursor: pointer;
+    padding: var(--factor);
     position: relative;
 
-    background: rgb(18 21 31);
-
-    display: grid;
-    grid-template: var(--size) / var(--size) var(--size);
-    column-gap: calc(0.5 * var(--size));
-    border: 1px solid rgb(0 0 0 / 0.25);
-    border-radius: calc(1.1 * var(--size));
-    padding: calc(0.25 * var(--size)) calc(0.45 * var(--size));
-    cursor: pointer;
-  }
-
-  svg {
-    width: var(--size);
-    height: var(--size);
-    fill: yellow;
-  }
-
-  span {
-    position: absolute;
-    top: calc(0.2 * var(--size));
-    left: calc(0.45 * var(--size));
-
-    background: #d1d1d1;
-
-    width: calc(1.1 * var(--size));
-    height: calc(1.1 * var(--size));
-    border-radius: 50%;
-
-    transition: left 0.2s ease-in-out;
+    /* To make outline on mobile invisible */
+    -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
   }
 
   input {
-    display: none;
+    height: 0;
+    width: 0;
+    visibility: hidden;
+    position: absolute;
   }
 
-  input:checked ~ span {
-    left: calc(2 * var(--size));
+  .planet {
+    width: calc(2 * var(--factor));
+    height: calc(2 * var(--factor));
+    border-radius: 50%;
+    overflow: hidden;
+    background: radial-gradient(calc(3.75 * var(--factor)), 99%, transparent 100%);
+    background-color: var(--bg-planet-bright);
+    background-repeat: no-repeat;
+    position: relative;
+    transition: all 400ms ease;
+
+    /* Safari transition issue */
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0);
+  }
+
+  .planet::after {
+    content: "";
+    background-color: var(--bg-planet-shadow);
+    width: calc(2 * var(--factor));
+    height: calc(2 * var(--factor));
+    position: absolute;
+    border-radius: 50%;
+    will-change: opacity, transform, background-color;
+    opacity: 0;
+    transform: translate(calc(2 * var(--factor)), calc(-2 * var(--factor)));
+    transition:
+      opacity 400ms ease,
+      transform 400ms ease,
+      background-color 400ms ease;
+  }
+
+  .elements {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 400ms ease;
+  }
+
+  svg {
+    position: absolute;
+    width: calc(0.45 * var(--factor));
+    height: calc(0.45 * var(--factor));
+    opacity: 1;
+    transition:
+      transform 400ms ease,
+      opacity 200ms ease,
+      width 200ms ease,
+      height 200ms ease;
+  }
+
+  svg circle {
+    fill: var(--bg-planet-bright);
+    transition: fill 400ms ease;
+  }
+
+  svg:first-child {
+    transform: translate(calc(1.8 * var(--factor)), calc(0.35 * var(--factor)));
+  }
+  svg:nth-child(2) {
+    transform: translate(calc(2.8 * var(--factor)), calc(0.7 * var(--factor)));
+  }
+  svg:nth-child(3) {
+    transform: translate(calc(3.2 * var(--factor)), calc(1.8 * var(--factor)));
+  }
+  svg:nth-child(4) {
+    transform: translate(calc(2.8 * var(--factor)), calc(2.8 * var(--factor)));
+  }
+  svg:nth-child(5) {
+    transform: translate(calc(1.8 * var(--factor)), calc(3.2 * var(--factor)));
+  }
+  svg:nth-child(6) {
+    transform: translate(calc(0.7 * var(--factor)), calc(2.8 * var(--factor)));
+  }
+  svg:nth-child(7) {
+    transform: translate(calc(0.35 * var(--factor)), calc(1.8 * var(--factor)));
+  }
+  svg:nth-child(8) {
+    transform: translate(calc(0.7 * var(--factor)), calc(0.7 * var(--factor)));
+  }
+
+  /* checked */
+
+  input:checked + .planet {
+    --bg-planet-bright: #D7D7D8;
+  }
+
+  input:checked + .planet::after {
+    opacity: 1;
+    transform: translate(calc(0.6 * var(--factor)), calc(-0.5 * var(--factor)));
+  }
+
+  input:checked ~ .elements {
+    transform: rotate(180deg);
+  }
+
+  input:checked ~ .elements svg:first-child {
+    transform: translate(calc(2 * var(--factor)), var(--factor));
+    opacity: 0;
+  }
+  input:checked ~ .elements svg:nth-child(2) {
+    transform: translate(calc(3 * var(--factor)), calc(1.5 * var(--factor)));
+    opacity: 0;
+  }
+  input:checked ~ .elements svg:nth-child(3) {
+    transform: translate(calc(3 * var(--factor)), calc(2 * var(--factor)));
+    opacity: 0;
+  }
+  input:checked ~ .elements svg:nth-child(4) {
+    transform: translate(calc(3 * var(--factor)), calc(2 * var(--factor)));
+    opacity: 0;
+  }
+  input:checked ~ .elements svg:nth-child(5) {
+    transform: translate(calc(1.9 * var(--factor)), calc(2.6 * var(--factor)));
+    width: calc(0.3 * var(--factor));
+    height: calc(0.3 * var(--factor));
+  }
+  input:checked ~ .elements svg:nth-child(5) circle {
+    fill: var(--bg-planet-lightshadow);
+  }
+  input:checked ~ .elements svg:nth-child(6) {
+    transform: translate(calc(1.4 * var(--factor)), calc(2.5 * var(--factor)));
+    width: calc(0.3 * var(--factor));
+    height: calc(0.3 * var(--factor));
+  }
+  input:checked ~ .elements svg:nth-child(6) circle {
+    fill: var(--bg-planet-lightshadow);
+  }
+  input:checked ~ .elements svg:nth-child(7) {
+    transform: translate(calc(1.1 * var(--factor)), calc(1.6 * var(--factor)));
+    width: calc(0.7 * var(--factor));
+    height: calc(0.7 * var(--factor));
+  }
+  input:checked ~ .elements svg:nth-child(7) circle {
+    fill: var(--bg-planet-lightshadow);
+  }
+  input:checked ~ .elements svg:nth-child(8) {
+    width: calc(0.45 * var(--factor));
+    height: calc(0.45 * var(--factor));
+    transform: translate(calc(1.7 * var(--factor)), calc(2.1 * var(--factor)));
+  }
+  input:checked ~ .elements svg:nth-child(8) circle {
+    fill: var(--bg-planet-lightshadow);
   }
 </style>
