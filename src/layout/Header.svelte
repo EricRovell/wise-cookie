@@ -35,21 +35,25 @@
 <style>
   .header-wrapper {
     width: 100%;
-    height: calc(50px + 20vh);
+    height: calc(50px + 10vh);
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
   }
   header {
-    height: 50px;
-    padding: 0.25em 2em;
-    border-bottom: 1px solid var(--color-3-35);
-
     display: grid;
     grid-template: 1fr / auto 1fr auto auto;
     grid-template-areas: "logo . navigation controls";
     place-items: center start;
     column-gap: 1.25em;
 
+    width: 100%;
+    max-width: var(--max-width);
+    height: 50px;
+
     position: sticky;
-    top: 0;
+    top: 0; 
   }
 
   header :global(.logo svg) {
@@ -108,7 +112,6 @@
     position: relative;
 
     color: var(--color-gray-500);
-    text-transform: lowercase;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -122,7 +125,7 @@
   ol a:hover::after {
     content: "";
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 3px;
@@ -136,7 +139,7 @@
   :global(nav a.active::after) {
     content: "";
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
     width: 100%;
     height: 3px;
@@ -153,34 +156,34 @@
 
     .header-wrapper {
       width: 100%;
-      height: calc(50px + 10vh);
+      height: calc(50px + 7.5vh);
     }
 
     header {
       height: 50px;
-      padding: 0.25em 1em 0 1em;
       column-gap: 1em;
     }
 
     nav ol {
-    display: grid;
-    grid-auto-flow: column;
-    column-gap: 0.5em;
-  }
-
-    .logo h1 {
-      display: none;
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: 0.5em;
     }
 
   }
 
-  @media screen and (max-width: 380px) {
+  @media screen and (max-width: 490px) {
+    .logo h1 {
+      display: none;
+    }
+  }
+
+  @media screen and (max-width: 365px) {
 
     header {
       grid-template: 1fr / auto auto;
       grid-template-areas: "navigation auto controls";
       place-items: center start;
-      padding: 0.25em 0.5em 0 0.5em;
     }
 
     .logo {
