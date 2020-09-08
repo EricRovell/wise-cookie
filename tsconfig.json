@@ -5,9 +5,10 @@
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
 
   "compilerOptions": {
+    "types": [ "jest", "node", "svelte" ],
     "removeComments": true,
-    "module": "es2020",
-    "target": "es2020",
+    "module": "ESNext",
+    "target": "ESNext",
     "baseUrl": ".",
     "paths": {
       "@src/*": [ "src/*"],
