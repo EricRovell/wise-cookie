@@ -4,6 +4,7 @@
   import type { Phrase, PhraseIDString } from "#types";
 
   import notificationsCentre from "@components/notification/index";
+  import { encrypt } from "@util/encryptNumber";
 
   import Button from "@components/controls/Button.svelte";
 
@@ -18,7 +19,7 @@
         await navigator.share({
           title: `Phrase from ${phrase.author}`,
           text: `${phrase.body}. Visit ${window.location.origin} for more!`,
-          url: `${window.location.origin}/#/phrase/${fragment}/${position}`
+          url: `${window.location.origin}/#/phrase/${encrypt(fragment)}/${encrypt(position, 1618033789784537)}`
         });
 
         notificationsCentre.addNotification({
