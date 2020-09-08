@@ -1,43 +1,65 @@
-<script>
+<script lang="ts">
+  import Cookie from "@app/Cookie";
+  import User from "@app/User";
+  import type { PhraseWithTimestamp, CookieIndex } from "#types";
+
   import { onMount } from "svelte";
-  import App from "@stores/app.js";
 
-  import Cookie from "@components/Cookie.svelte";
-  import PhrasePromise from "@components/PhrasePromise.svelte";
+  import CookieElement from "@components/Cookie.svelte";
+  import Loader from "@components/Loader.svelte";
+  import Phrase from "@components/Phrase/Phrase.svelte";
+  import EatMe from "@components/EatMe.svelte";
 
-  let phrases = [];
+  let phrases: PhraseWithTimestamp[] = [];
+  let indexes: CookieIndex[] = [ 0, 1, 2 ];
 
   // fetching last generated phrases
   onMount(async () => {
-    phrases = await $App.lastPhrases();
+    let currentPhrases = await User.getCurrentPhrases();
+    phrases = currentPhrases.sort((a, b) => b.timestamp - a.timestamp);
   });
 
-  function eatCookie(event) {
+  async function eatCookie(event) {
     const index = event.detail.index;
-    phrases[index] = $App.eatCookie(index);
+    const phraseFromCookie = await Cookie.eatCookie(index);
+
+    // get new phrase and shift to get the latest 3
+    // sorting on timestamp desc
+    phrases = [ phraseFromCookie, ...phrases ]
+      .slice(0, 3)
+      .sort((a, b) => b.timestamp - a.timestamp);
+
+    scrollTo(0, 0);
   }
 </script>
 
 <div class="container">
   <div class="cookies">
-    {#each [0, 1, 2] as index}
-      <Cookie
+    {#each indexes as index}
+      <CookieElement
         {index}
         on:eatingcookie={eatCookie} />
     {/each}
   </div>
   <div class="gradient" />
   <div class="phrases">
-    {#each [0, 1, 2] as index}
-      <PhrasePromise promisedPhrase={phrases[index]} />
-    {/each}
+    {#await phrases}
+      <Loader />
+    {:then phrases}
+      {#each phrases as phrase (phrase.timestamp)}
+        <Phrase phrase={phrase} glowing />
+      {:else}
+        <EatMe />
+      {/each}
+    {:catch error}
+      <p>Something is wrong: {error}</p>
+    {/await}
   </div>
 </div>
 
 <style>
   .container {
     display: grid;
-    row-gap: 1.5em;
     width: 100%;
   }
 
@@ -53,6 +75,7 @@
     z-index: 2;
 
     background: var(--bg);
+    transition: background 0.35s linear;
   }
 
   .gradient {
@@ -63,10 +86,12 @@
     width: 100%;
     height: 2.5em;
     background: linear-gradient(180deg, var(--bg) 35%, transparent 100%);
+    transition: background 0.35s linear;
   }
 
   .phrases {
     display: grid;
-    row-gap: 1.5em;
+    row-gap: 2.25em;
+    margin-top: 0.5em;
   }
 </style>
