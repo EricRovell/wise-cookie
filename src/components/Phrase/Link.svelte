@@ -1,6 +1,7 @@
 <script>
   import { getContext } from "svelte";
   import copyToClipboard from "@util/clipboard.js";
+  import { encrypt } from "@util/encryptNumber";
 
   import notificationsCentre from "@components/notification/index";
 
@@ -8,7 +9,7 @@
   
   const { id: [ fragment, position ] } = getContext("phrase");
 
-  $: href = `${window.location.origin}/#/phrase/${fragment}/${position}`;
+  $: href = `${window.location.origin}/#/phrase/${encrypt(fragment)}/${encrypt(position, 1618033789784537)}`;
 
   async function copyAction() {
     const operationStatus = await copyToClipboard(href);
