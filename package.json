@@ -7,8 +7,7 @@
     "dev": "npm run phrases && rollup -c -w",
     "start": "sirv public --host",
     "phrases": "node ./scripts/transformPacks.js",
-    "test": "ava",
-    "testVerbose": "ava --verbose"
+    "test": "jest"
   },
   "devDependencies": {
     "@rollup/plugin-alias": "^3.1.1",
@@ -16,7 +15,10 @@
     "@rollup/plugin-node-resolve": "^9.0.0",
     "@rollup/plugin-typescript": "^5.0.2",
     "@tsconfig/svelte": "^1.0.10",
-    "ava": "^3.12.1",
+    "@types/jest": "^26.0.13",
+    "@types/node": "^14.6.4",
+    "cypress": "^5.1.0",
+    "jest": "^26.4.2",
     "mdsvex": "^0.8.6",
     "rollup": "^2.26.9",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -28,6 +30,7 @@
     "svelte": "^3.24.1",
     "svelte-check": "^1.0.32",
     "svelte-preprocess": "^4.2.0",
+    "ts-jest": "^26.3.0",
     "tslib": "^2.0.1",
     "typescript": "^4.0.2"
   },
