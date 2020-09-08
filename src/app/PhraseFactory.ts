@@ -4,7 +4,7 @@ import Random from "./Random";
 import type { Phrase, PhraseID } from "#types";
 
 /**
- * Phrases constructor class. 
+ * Phrases constructor class.
  */
 export default class PhraseFactory {
   
@@ -45,7 +45,7 @@ export default class PhraseFactory {
    * 
    * @private
    */
-  private static validateID(id: PhraseID): boolean {
+  public static validateID(id: PhraseID): boolean {
     const [ fragment, position ] = id;
     // fragment should be present and the position should be in number of containing phrases range
     return map[fragment] && position <= map[fragment] && position >= 0;
