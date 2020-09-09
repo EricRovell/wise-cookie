@@ -9,6 +9,10 @@ on:
     branches:
       - master
 
+strategy:
+  matrix:
+    node: [ 14 ]
+
 jobs:
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
@@ -17,6 +21,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
+          node-version: ${{ matrix.node }}
           submodules: true
       - name: Build And Deploy
         id: builddeploy
