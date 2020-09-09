@@ -1,6 +1,21 @@
 {
   "name": "wise-cookie",
+  "description": "Wise Cookie: An inspirational daily phrases generator",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/EricRovell/wise-cookie"
+  },
+  "keywords": [
+    "phrases",
+    "phrases generator",
+    "wisdom cookie"
+  ],
+  "author": {
+    "name": "Eric Rovell",
+    "email": "ericrovell@gmail.com"
+  },
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "build": "npm run phrases && rollup -c",
