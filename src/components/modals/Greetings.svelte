@@ -1,5 +1,4 @@
 <script>
-  import App from "@stores/app.js";
   import Button from "@components/Button.svelte";
   import Cookie from "@components/svg/Cookie.svelte";
   import MrCookie from "@components/MrCookie.svelte";
