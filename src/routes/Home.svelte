@@ -1,31 +1,55 @@
-<script>
-  import { onMount } from "svelte";
-  import App from "@stores/app.js";
+<script lang="ts">
+  import User from "@app/User";
+  import type { UserClassType } from "#types";
+  import Random from "@app/Random";
 
+  import notificationsCentre from "@components/notification/index";
+
+  import { onMount } from "svelte";
+  
   import FadingWrapper from "@src/layout/FadingWrapper.svelte";
   import MrCookie from "@components/MrCookie.svelte";
   import CookiePhrases from "@components/CookiePhrases.svelte";
   
-  import modal from "@stores/modal.js";
+  import modal from "@stores/modal";
   import Library from "@components/modals/Library.svelte";
   import Greetings from "@components/modals/Greetings.svelte";
 
-  function dialogue() {
-    modal.set({
-      title: "Mr. Cookie",
-      contents: Library
+  const replies = [
+    "Hello there!",
+    "My name is Mr.Cookie!",
+    "My wisdom is really sweet, really!",
+    "I am always glad to see you, my friend!"
+  ];
+
+  /**
+   * Tels how much unique cookies are left for a user.
+   */
+   async function dialogue() {
+    const reply = (Random.randFloat() > 0.25)
+      ? Random.randArrElement(replies)
+      : `You have ${await User.getUniqueCookies()} of unique cookies!`;
+
+    notificationsCentre.addNotification({
+      text: reply,
+      position: "bottom-left",
+      removeAfter: "2000"
     });
   }
 
+  /**
+   * Resolves the user status and shows the Greeting Modal for a new user.
+   */
   onMount(async () => {
-    const userGuest = await $App.db.userGuest();
+    const userStatus = await User.resolveUserStatus();
 
-    if (userGuest) {
+    if (!userStatus) {
       modal.set({
+        show: true,
         title: "Greetings!",
         contents: Greetings
       });
-    }  
+    }
   });
 </script>
 
