@@ -14,8 +14,8 @@
  * Index -> number of pack, value -> number of phrases within it.
  */
 
-import { readFile, readdir, writeFile } from "fs/promises";
-import { join, resolve } from "path";
+const { readFile, readdir, writeFile } = require("fs/promises");
+const { join, resolve } = require("path");
 
 const __dirname = resolve();
 
