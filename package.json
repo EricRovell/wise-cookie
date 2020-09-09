@@ -21,7 +21,7 @@
     "build": "npm run phrases && rollup -c",
     "dev": "npm run phrases && rollup -c -w",
     "start": "sirv public --host",
-    "phrases": "node ./scripts/transformPacks.js",
+    "phrases": "node ./scripts/transformPacks.js --experimental-modules",
     "test": "jest"
   },
   "devDependencies": {
