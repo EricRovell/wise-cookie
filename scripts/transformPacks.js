@@ -14,7 +14,7 @@
  * Index -> number of pack, value -> number of phrases within it.
  */
 
-import { readFile, readdir, writeFile } from "fs/promises";
+import { readFile, readdir, mkdir, writeFile } from "fs/promises";
 import { join, resolve } from "path";
 
 const __dirname = resolve();
@@ -91,6 +91,8 @@ async function writeProcessedFile(pack, phrases) {
     pack,
     phrases
   });
+
+  await mkdir(OUTPUT_DIR, { recursive: true });
 
   try {
     await writeFile(join(OUTPUT_DIR, `${pack}.json`), json, {
