@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
-  import App from "@stores/app.js";
+
+  import User from "@app/User";
+
   import Button from "@components/Button.svelte";
   import Cookie from "@components/svg/Cookie.svelte";
 
@@ -9,7 +11,7 @@
   let eatenCookies = 0;
 
   onMount(async () => {
-    eatenCookies = await $App.db.getCookiesEaten();
+    eatenCookies = await User.getUniqueCookies();
   });
 </script>
 
