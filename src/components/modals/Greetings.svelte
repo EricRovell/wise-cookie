@@ -1,5 +1,5 @@
 <script>
-  import Button from "@components/Button.svelte";
+  import Button from "@components/controls/Button.svelte";
   import Cookie from "@components/svg/Cookie.svelte";
   import MrCookie from "@components/MrCookie.svelte";
 
