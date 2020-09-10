@@ -74,7 +74,7 @@
     top: 0;
     z-index: 2;
 
-    background: var(--bg);
+    background: var(--color-1);
     transition: background 0.35s linear;
   }
 
@@ -85,7 +85,7 @@
 
     width: 100%;
     height: 2.5em;
-    background: linear-gradient(180deg, var(--bg) 35%, transparent 100%);
+    background: linear-gradient(180deg, var(--color-1) 35%, transparent 100%);
     transition: background 0.35s linear;
   }
 
@@ -93,5 +93,7 @@
     display: grid;
     row-gap: 2.25em;
     margin-top: 0.5em;
+
+    padding: 0 15px;
   }
 </style>
