@@ -1,6 +1,22 @@
-<script>
+<script lang="ts">
+  import User from "@app/User"
+
   import Cookie from "@components/svg/Cookie.svelte";
   import MrCookie from "@components/MrCookie.svelte";
+  import Button from "@components/controls/Button.svelte";
+
+  import notifications from "@components/notification/index";
+
+  async function purgeData() {
+    await User.purgeUserData();
+
+    notifications.addNotification({
+      type: "success",
+      text: "Purged all user data successfully!",
+      position: "bottom-right",
+      removeAfter: 2500
+    });
+  }
 </script>
 
 <svelte:head>
@@ -9,11 +25,13 @@
 
 # # Welcome
 
-Welcome to this little library of great wisdom! Nice to meet you! My name is Mr.Cookie and I am here to help you and tell you everything you need to know about this kitchen of sweet wisdom.
+I bet you have heard about the "Fortune Cookies" with some "secret" inside of them. Well, nice to meet you, I am it's cousin: the Wise Cookie and I have a piece of wisdom inside of me! 
 
-It takes us some time to prepare a cookie for you. 8 hours, to be precise! So you can get 3 cookies per day. Come back for more! To "consume" a cookie, just click on it and you will get a bit of wisdom. If cookie is not ready yet, you will get the information when how much time is left!
+I am here to cook up some cookies filled with wisdom for you. And... usually, it takes some time to prepare a cookie. Eight hours, to be precise! So you can get three cookies at the moment. Come back again, there will be more!
 
-Below you can see how cookies looks like. You may try to interact with them by tap to "eat" it or make it ready to be "eaten" again! These cookies are empty tho, so do not be surprised!
+To "consume" a cookie, just click on it and you will get a personal piece of wisdom. If cookie is not ready yet, you will get the information when how much time is left for it to be baked.
+
+Below you can see how cookies looks like. You may try to "eat" it or make it ready to be "eaten" again! These cookies are empty tho, so do not be surprised! The secret ingridient takes some time to be done.
 
 <div class="cookies">
   <Cookie size="50px" />
@@ -23,11 +41,11 @@ Below you can see how cookies looks like. You may try to interact with them by t
 
 # # Library
 
-Phrases collection is vast and will be updated from time to time. To get how many unique phrases is still available for you personally, tap on Mr.Cookie and he will tell you the number. This value is dynamic and updates each time you get a new piece of wisdom.
+Wisdom "phrases" collection is vast and will be updated from time to time. To get your personal number of available unique phrases, tap on me and I might tell you. Each time you eat a cookie, you will be notified about your progress.
 
-Mr.Cookie also can help you to forget all the phrases you already seen and all the phrases will be unique again.
+Also I can help you to forget all the phrases you already seen and all the phrases will be unique again.
 
-# # Phrases
+# # Phrases of Wisdom
 
 Beside the phrase and it's author itself you have the dedicated control bar with some useful options:
 
@@ -72,73 +90,55 @@ Beside the phrase and it's author itself you have the dedicated control bar with
   <span>URL</span>
 </div>
 
-They make possible for us to:
+They make it possible to:
 
-- to "Like" the phrase and make it favourite,
+- to "Like" the phrase and make it favourite (more about it later),
 - to Share the phrase with the world,
 - to Copy the phrase itself for your particular purposes,
-- to Get a URL link for this particular phrase.
+- to copy an URL link for this particular phrase to share it or store as bookmark.
 
 We will learn about each action in more detail now!
 
 ## Favourites
 
-Sometimes you might like the phrase and save it for yourself to remember it and do not forget. That's why we it is possible to mark phrases as "favourites". Just tap oh a heart to mark to make it happen. Do it again if you want to remove it.
+Sometimes you might like the phrase and would like save it for yourself to remember it and do not forget. That's why we it is possible to mark phrases as "favourites". Just tap oh a heart to mark to make it happen. Do it again if you want to remove it. Your personal pieces of wisdom will be stored as personal collection.
 
-After that you can find marked phrases in <a href="/#/favourites">"Favourites"</a> section of website. It is your personal storage you will never lose. All the information is stored on your device's web browser and no data is transmitted.
+After that you can find marked phrases in <a title="Favourites collection" href="/#/favourites">"Favourites"</a> section of website. It is your personal storage you will never lose. All the information is stored on your device's web browser and no data is transmitted.
 
 Please, remember, there is some restrictions about the number of saved phrases. For now it is 100 phrases. Each time you try to add more the oldest one is removed. Never ending cycle of wisdom! Nevertheless the phrases takes up a little storage, we do not want to clutter your device's memory.
 
 ## Share
 
-This control button provides us the action to share a phrase, like you can share media and link using native applications. Unfortunately, this feature is not widely available for every browser yet (mostly apple devices and the latest Chrome for Android).
+This control button provides us the action to share a phrase, like you can share media and link using native applications on your phone. Unfortunately, this feature is not widely available for every browser yet (mostly apple devices and the latest Chrome for Android).
 
-If it is not supported by your browser, the URL for the phrase will be copied to clipboard instead.
+If it is not supported by your browser, you will get notification about it.
 
 ## Copy
 
-This control button provides the user with the shortcut to copy the phrase to the clipboard to share it with someone else or save it somewhere else. 
+This control button provides the user with the shortcut to copy the phrase to the clipboard to share it with someone else or save it outside of the application. 
 
 ## URL link
 
-This control button provides a permanent portal to this particular phrase. It is usefull many reasons, as it provides a way to find a this phrase just by using the link which you can share and save to your bookmarks.
+This control button provides permanent portal key to this particular phrase. It is usefull many reasons, as it provides a way to find a this phrase just by using the link which you can share and save to your bookmarks. Click on this button to copy the link to the clipboard.
+
+## ## The user data
+
+Using this application you store some data on your device's browser. It won't take much and most importanly it won't be transmitted anywhere. The data includes your personal phrases, your collection of phrases and theme preference. That's all. To clean all the data, just use this action or clean the "cookies" for this website and all will be gone.
+
+Thank you for using the "Wise Cookie"!
+
+<Button
+  handleClick={purgeData}
+  message="Purge user data"
+  tooltip="Dele all user data"
+  size="200px"
+/>
 
 <div class="mr-cookie">
   <MrCookie type="glasses" />
 </div>
 
 <style>
-  h1 {
-    color: var(--color-3);
-    margin-top: 1em;
-    margin-bottom: 0.5em;
-    font-size: 1.4em;
-  }
-
-  h2 {
-    color: var(--color-3);
-    margin-top: 1em;
-    margin-bottom: 0.1em;
-    font-size: 1.1em;
-  }
-
-  p {
-    text-indent: 0.75em;
-  }
-
-  ul {
-    list-style: none;
-    counter-reset: options;
-  }
-
-  ul li {
-    counter-increment: options
-  }
-
-  ul li:before {
-    content: counter(options) ". ";
-  }
-
   .cookies {
     display: flex;
     justify-content: space-around;
