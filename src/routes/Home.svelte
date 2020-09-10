@@ -12,7 +12,6 @@
   import CookiePhrases from "@components/CookiePhrases.svelte";
   
   import modal from "@stores/modal";
-  import Library from "@components/modals/Library.svelte";
   import Greetings from "@components/modals/Greetings.svelte";
 
   const replies = [
