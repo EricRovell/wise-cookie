@@ -1,4 +1,4 @@
-import { get, set, del } from "idb-keyval";
+import { get, set, del, clear } from "idb-keyval";
 
 import type {
   Theme, CookieIndex, UniqueCookies,
@@ -185,6 +185,13 @@ export default class DB {
 
   public static async resetHistory(): Promise<void> {
     await del("history");
+  }
+
+  /**
+   * Purge the db data stored by the user.
+   */
+  public static async purgeAllData() {
+    await clear();
   }
 
 }
