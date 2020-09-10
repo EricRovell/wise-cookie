@@ -40,6 +40,12 @@
     padding-top: 1.5em;
   }
 
+  @media screen and (max-width: 640px) {
+    #layout-main  {
+      padding: 0 0.5em;
+    }
+  }
+
   @media screen and (max-width: 450px) {
     .content {
       padding: 0 0.25em;
