@@ -1,7 +1,7 @@
 <script>
   export let handleClick = null;
   export let message = null;
-  export let transparent = true;
+  export let transparent = false;
   export let size = "auto";
 
   export let tooltip = null;
@@ -10,6 +10,8 @@
 <button
   on:click={handleClick}
   class:transparent
+  class:withmessage={message}
+  class:tooltip
   style="--height: {size};"
   data-tooltip={tooltip}>
     {#if message}
@@ -38,9 +40,9 @@
     transition: transform 0.15s ease-in-out;  
   }
 
-  /* button:hover {
-    transform: scale(1.1);
-  } */
+  .withmessage {
+    padding: 0.25em 0.75em;
+  }
 
   button:active {
     transform: scale(0.75);
@@ -48,7 +50,7 @@
 
   /* tooltip */
 
-  button::after {
+  .tooltip::after {
     content: attr(data-tooltip);
     position: absolute;
     top: calc(100% + 0.5em);
@@ -68,7 +70,7 @@
     z-index: 50;
   }
 
-  button:hover::after {
+  .tooltip:hover::after {
     transform: scaleY(1) translateX(-50%);
   }
 
@@ -77,7 +79,7 @@
   }
 
   @media screen and (max-width: 640px) {
-    button::after {
+    .tooltip::after {
       display: none;
     }
   }
