@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import Button from "@components/Button.svelte";
+  import Button from "@components/controls/Button.svelte";
   import renderTime from "@util/renderTime.js";
 
   // number of miliseconds to countdown
