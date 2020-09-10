@@ -124,6 +124,13 @@ export default class User {
     }
   }
 
+  /**
+   * Purge all the user data permanently.
+   */
+  public static async purgeUserData() {
+    await db.purgeAllData();
+  }
+
 }
 
 export type UserClassType = User;
