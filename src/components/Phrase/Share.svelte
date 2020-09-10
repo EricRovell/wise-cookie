@@ -60,7 +60,7 @@
 
   Entire Phrase URL is: #/phrase/:id
 -->
-<Button handleClick={sharePhrase} tooltip="Share">
+<Button handleClick={sharePhrase} tooltip="Share" transparent>
   <svg
     viewBox="0 0 100 100"
     xmlns="http://www.w3.org/2000/svg">
