@@ -28,12 +28,5 @@
 
     display: grid;
     grid-template: var(--size) / repeat(4, var(--size));
-    column-gap: 0.5em;
-  }
-
-  @media screen and (max-width: 720px) {
-    div {
-      column-gap: 0;
-    }
   }
 </style>
