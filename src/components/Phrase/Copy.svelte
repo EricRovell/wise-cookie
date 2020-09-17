@@ -9,7 +9,7 @@
   const phrase = getContext("phrase");
 
   async function copyAction() {
-    const operationStatus = await copyToClipboard(phrase.toString());
+    const operationStatus = await copyToClipboard(phrase.body);
 
     notificationsCentre.addNotification({
       type: operationStatus ? "success" : "danger",
