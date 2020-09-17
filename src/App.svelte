@@ -26,3 +26,4 @@
 </LayoutMain>
 <Modal />
 <Notifications />
+<div id="animation-container" />
