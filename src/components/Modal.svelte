@@ -24,6 +24,7 @@
 <style>
   .wrapper {
     position: fixed;
+    transform: translate3d(0, 0, 0);
     top: 0;
     left: 0;
     width: 100%;
@@ -33,12 +34,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    z-index: 100;
   }
 
   @supports (backdrop-filter: blur(5px)) {
     .wrapper { 
       backdrop-filter: blur(3px);
-      z-index: 100;
     }
   }
 
@@ -57,7 +59,6 @@
     border: 1px solid var(--color-3-35);
 
     overflow-y: auto;
-    z-index: 100;
   }
 
   header {
