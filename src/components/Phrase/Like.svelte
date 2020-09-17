@@ -1,5 +1,6 @@
 <script>
   import User from "@app/User";
+  import { heartExplode } from "@util/heartExplodeAnim";
 
   import Button from "@components/controls/Button.svelte";
 
@@ -8,9 +9,11 @@
   
   const phrase = getContext("phrase");
 
+  const container = document.querySelector("#animation-container");
+
   let liked = false;
 
-  async function rememberQuote() {
+  async function rememberQuote(event) {
     const operationStatus = await User.markFavouritePhrase(phrase);  
     liked = !liked;
 
@@ -30,6 +33,12 @@
       type = "danger";
       text = "Something is wrong. Please, try again later."
         break;
+    }
+
+    // animate if added to favourites
+    // no sense if removed
+    if (liked) {
+      heartExplode(event, container);
     }
 
     notificationsCentre.addNotification({
@@ -78,6 +87,15 @@
 
   .liked path:first-of-type {
     fill: var(--color-3);
+  }
+
+  :global(particle) {
+    border-radius: 50%;
+    left: 0;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    opacity: 0;
   }
 </style>
   
