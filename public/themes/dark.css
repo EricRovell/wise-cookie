@@ -5,7 +5,8 @@
   --color-2: hsl(191 33% 52%); /* set */
   --color-3: hsl(19 66% 67%); /* set */
   --color-4: hsl(0 0% 93%);
-  
+
+  --transparent: hsl(217 27% 10% / 0.001);  
 
   --color-3-35: hsl(19 66% 67% / 0.35); /* set */
 

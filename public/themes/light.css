@@ -6,6 +6,7 @@
   --color-3: hsl(195 100% 44%); /* set */
   --color-4: hsl(162 27% 45%);
   
+  --transparent: hsl(0 13% 92% / 0.001);  
 
   --color-3-35: hsl(19 66% 67% / 0.35); /* set */
 

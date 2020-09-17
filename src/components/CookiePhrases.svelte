@@ -86,10 +86,10 @@
     width: 100%;
     height: 2.5em;
     background-color: #9e9e9e; /* fallback color if gradients are not supported */
-    background: -webkit-linear-gradient(180deg, var(--color-1) 35%, rgb(255 255 255 / 0.001) 100%); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
-    background:    -moz-linear-gradient(180deg, var(--color-1) 35%, rgb(255 255 255 / 0.001) 100%); /* For Firefox (3.6 to 15) */
-    background:      -o-linear-gradient(180deg, var(--color-1) 35%, rgb(255 255 255 / 0.001) 100%); /* For old Opera (11.1 to 12.0) */ 
-    background:         linear-gradient(180deg, var(--color-1) 35%, rgb(255 255 255 / 0.001) 100%);
+    background: -webkit-linear-gradient(180deg, var(--color-1) 35%, var(--transparent)); /* For Chrome 25 and Safari 6, iOS 6.1, Android 4.3 */
+    background:    -moz-linear-gradient(180deg, var(--color-1) 35%, var(--transparent)); /* For Firefox (3.6 to 15) */
+    background:      -o-linear-gradient(180deg, var(--color-1) 35%, var(--transparent)); /* For old Opera (11.1 to 12.0) */ 
+    background:         linear-gradient(180deg, var(--color-1) 35%, var(--transparent));
 
     transition: background 0.35s linear;
   }
