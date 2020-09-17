@@ -57,6 +57,7 @@
     border: 1px solid var(--color-3-35);
 
     overflow-y: auto;
+    z-index: 100;
   }
 
   header {
