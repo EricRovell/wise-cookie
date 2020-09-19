@@ -1,6 +1,19 @@
 <script>
   import { scale, fade } from "svelte/transition";
   import modal from "@stores/modal.js";
+
+  $: {
+    // mostly for safari hack
+    if ($modal.show) {
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${window.scrollY}px`;
+    } else {
+      const scrollY = document.body.style.top;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
+  }
 </script>
 
 {#if $modal.show}
@@ -71,16 +84,9 @@
   }
 
   @media screen and (max-width: 640px) {
-
-    .wrapper {
-      align-items: flex-end;
-    }
-
     .modal {
       max-width: 90vw;
       max-height: 75vh;
-
-      border-radius: 10px 10px 0 0;
     }
   }
 </style>
