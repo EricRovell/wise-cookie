@@ -9,7 +9,9 @@
   const phrase = getContext("phrase");
 
   async function copyAction() {
-    const operationStatus = await copyToClipboard(phrase.body);
+    const operationStatus = await copyToClipboard(
+      `"${phrase.body}" \n\n - ${phrase.author}. \n\n Source: ${window.location.origin}`
+    );
 
     notificationsCentre.addNotification({
       type: operationStatus ? "success" : "danger",
