@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-  <title>About the Wise Cookie</title>
+  <title>About the Wise Cookie Privacy</title>
 </svelte:head>
 
 # Cookies Policy
@@ -39,11 +39,10 @@ Cookies can be "Persistent" or "Session" Cookies. Persistent Cookies remain on y
 
 We use only persistent Cookies for the purposes set out below:
 
-**Functionality Cookies:**
-Type: Persistent Cookies
-Administered by: Us
+**Functionality** Cookies, type: Persistent Cookies.
+Administered by: Us.
 
-Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your progress or theme preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website.
+Purpose: These Cookies allow us to remember choices You make when You use the Website, such as remembering your progress or theme preference. The purpose of these Cookies is to provide You with a more personal experience and to avoid You having to re-enter your preferences every time You use the Website. No any personal imformation is stored in these Persistent Cookies. Only information about your progress and theme preference.
 
 ## Your Choices Regarding Cookies
 
@@ -51,7 +50,7 @@ If You prefer to avoid the use of Cookies on the Website, first You must disable
 
 If You do not accept Our Cookies, You may experience some inconvenience in your use of the Website and some features may not function properly.
 
-If You'd like to delete Cookies or instruct your web browser to delete or refuse Cookies, please visit the Help page and scroll to the bottom. Onther options is to visit the help pages of your web browser:
+If You'd like to delete Cookies or instruct your web browser to delete or refuse Cookies, please visit the <a href="/#/help">Help</a> page and scroll to the bottom. Onther options is to visit the help pages of your web browser:
 
 - For the Chrome web browser, please visit this page from Google: <a href="https://support.google.com/accounts/answer/32050" rel="external nofollow noopener" target="_blank">https://support.google.com/accounts/answer/32050</a>
 - For the Internet Explorer web browser, please visit this page from Microsoft: <a href="http://support.microsoft.com/kb/278835" rel="external nofollow noopener" target="_blank">http://support.microsoft.com/kb/278835</a>
