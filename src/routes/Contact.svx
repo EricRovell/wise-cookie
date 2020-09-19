@@ -1,0 +1,16 @@
+# The Crew
+
+Wise Cookie was brought to you by several people. Feel free to contact for any questions and reviews.
+
+## The mastermind
+
+The mastermind behind the "Wise Cookie" is the Temur Umarov.
+Feel free to contact through <a href="mailto:umarovtemur25@gmail.com">email</a>.
+
+## The design
+
+Wise Cookie's character design by visual artist and designer <a href="https://web.marcelforart.com/victoriakan">Victoria</a>.
+
+## The development
+
+The web application was build with ❤️ by <a href="https://github.com/EricRovell">Eric Rovell</a>.
