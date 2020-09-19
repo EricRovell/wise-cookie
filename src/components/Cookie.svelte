@@ -40,7 +40,7 @@
     if (eaten) {
       modal.set({
         show: true,
-        title: "Countdown",
+        title: "Baking time!",
         contents: Countdown,
         props: {
           timestamp: await Cookie.getCookieTime(index)
