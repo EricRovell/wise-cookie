@@ -17,8 +17,8 @@
         const [ fragment, position ] = phrase.id;
 
         await navigator.share({
-          title: `Phrase from ${phrase.author}`,
-          text: `${phrase.body}. Visit ${window.location.origin} for more!`,
+          title: `Wise Cookie Phrase`,
+          text: `"${phrase.body}" \n\n - ${phrase.author}.`,
           url: `${window.location.origin}/#/phrase/${encrypt(fragment)}/${encrypt(position, 1618033789784537)}`
         });
 
