@@ -1,5 +1,8 @@
 <script>
+  import { onMount } from "svelte";
   import FadingWrapper from "@src/layout/FadingWrapper.svelte";
+
+  onMount(() => window.scrollTo(0, 0));
 </script>
 
 <FadingWrapper>
