@@ -71,9 +71,16 @@
   }
 
   @media screen and (max-width: 640px) {
+
+    .wrapper {
+      align-items: flex-end;
+    }
+
     .modal {
-      max-width: 75vw;
-      max-height: 70vh;
+      max-width: 90vw;
+      max-height: 75vh;
+
+      border-radius: 10px 10px 0 0;
     }
   }
 </style>
