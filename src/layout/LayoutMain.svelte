@@ -36,7 +36,7 @@
     max-width: var(--max-width);
     min-height: 100vh;
 
-    margin-bottom: 15vh;
+    margin-bottom: 5vh;
     padding-top: 1.5em;
   }
 
