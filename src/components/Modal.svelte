@@ -3,6 +3,7 @@
   import modal from "@stores/modal.js";
 
   $: {
+    // prevent page scroll
     // mostly for safari hack
     if ($modal.show) {
       document.body.style.position = 'fixed';
@@ -14,6 +15,15 @@
       window.scrollTo(0, parseInt(scrollY || '0') * -1);
     }
   }
+
+  function handleClick(event) {
+    event.stopPropagation();
+
+    // if user goes to the link, hide the modal
+    if (event.target.nodeName === "A") {
+      modal.hide();
+    }
+  }
 </script>
 
 {#if $modal.show}
@@ -23,7 +33,7 @@
     transition:fade={{ duration: 250 }}>
       <div
         class="modal"
-        on:click|stopPropagation
+        on:click={handleClick}
         transition:scale={{ duration: 250 }}>
           <header>{$modal.title}</header>
           <svelte:component
