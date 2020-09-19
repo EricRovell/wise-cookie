@@ -1,5 +1,5 @@
 <script>
-  import navRoutes from "@routes/navigation-routes.js";
+  import { routesHeader } from "@routes/navigation-routes.js";
   import { link } from "svelte-spa-router";
   import active from "svelte-spa-router/active"; 
 
@@ -17,7 +17,7 @@
     </a>
     <nav>
       <ol>
-        {#each navRoutes as { label, href }}
+        {#each routesHeader as { label, href }}
           <li>
             <a {href} use:active use:link>
               {label}
