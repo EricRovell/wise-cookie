@@ -2,7 +2,6 @@
   import Like from "@components/Phrase/Like.svelte";
   import Share from "@components/Phrase/Share.svelte";
   import Copy from "@components/Phrase/Copy.svelte";
-  import Link from "@components/Phrase/Link.svelte";
 </script>
 
 <!--
@@ -17,7 +16,7 @@
     - Link: providing and anchor to this specific phrase.
 -->
 <div>
-  {#each [ Like, Share, Copy, Link ] as ControlButton}
+  {#each [ Like, Copy, Share ] as ControlButton}
     <ControlButton />
   {/each}
 </div>
