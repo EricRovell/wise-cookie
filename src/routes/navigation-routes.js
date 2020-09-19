@@ -1,4 +1,4 @@
-export default [
+export const routesHeader = [
   {
     label: "Cookies",
     href: "/"
@@ -14,5 +14,24 @@ export default [
   {
     label: "About",
     href: "/about"
-  }  
+  }
+];
+
+export const routesFooter = [
+  {
+    label: "Help",
+    href: "/#/help",
+  },
+  {
+    label: "About",
+    href: "/#/about"
+  },
+  {
+    label: "Privacy",
+    href: "/#/privacy",
+  },
+  {
+    label: "Contact",
+    href: "/#/contact",
+  }
 ];
