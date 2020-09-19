@@ -10,7 +10,7 @@ You alone can utilize your own hands. $Bertie Forbes
 You alone can control your own muscles. $Bertie Forbes
 You must stand on your feet, physically and metaphorically. $Bertie Forbes
 You must take your own steps. $Bertie Forbes
-You cannot fight your son�s battles; that he must do for himself. $Bertie Forbes
+You cannot fight your son's battles; that he must do for himself. $Bertie Forbes
 You have to be captain of your own destiny. $Bertie Forbes
 You have to see through your own eyes. $Bertie Forbes
 You have to use your own ears. $Bertie Forbes
@@ -21,9 +21,9 @@ You have to create your own ideas. $Bertie Forbes
 Your real life is your thoughts. $Bertie Forbes
 You are the creator of your own personality. $Bertie Forbes
 You have to write your own record. $Bertie Forbes
-You have to build your own monument � or dig your own pit. $Bertie Forbes
-Punctuality doesn�t mean coming at exact time, it means coming earlier. $admin
-Don�t put your hands in the pockets, when you are talking to someone older than you. $eastern wisdom.
+You have to build your own monument ' or dig your own pit. $Bertie Forbes
+Punctuality doesn't mean coming at exact time, it means coming earlier. $admin
+Don't put your hands in the pockets, when you are talking to someone older than you. $eastern wisdom.
 What is your idea of perfect happiness? $Marcel Proust
 What is your greatest fear? $Marcel Proust
 What is the trait you most deplore in yourself? $Marcel Proust
@@ -55,5 +55,5 @@ What is it that you most dislike? $Marcel Proust
 What is your greatest regret? $Marcel Proust
 How would you like to die? $Marcel Proust
 What is your motto? $Marcel Proust
-The harder I practice, the luckier I get. $�What they don�t teach you at Harvard� Book
-Do the obvious when you should obviously do it, and don�t do anything when you obviously shouldn�t. $�What they don�t teach you at Harvard� Book
+The harder I practice, the luckier I get. $'What they don't teach you at Harvard' Book
+Do the obvious when you should obviously do it, and don't do anything when you obviously shouldn't. $'What they don't teach you at Harvard' Book
