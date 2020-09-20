@@ -1,7 +1,8 @@
 import db from "./DB";
+import Cookie from "./Cookie";
 import map from "@public/data/map";
 
-import type { Theme, Phrase, PhraseID, PhrasesFavourite, PhraseIDString, UniqueCookies, PhraseWithTimestamp } from "#types";
+import type { Theme, Phrase, PhraseID, PhrasesFavourite, PhraseIDString, UniqueCookies, PhraseWithTimestamp, CookieIndex } from "#types";
 
 /**
  * Provides access to user preferences and saved data (locally)
@@ -19,7 +20,10 @@ export default class User {
       await db.setUserStatus(true);
       // init unique cookies value
       await this.initUniqueCookies();
-    }
+    } else {
+      // user has some progress, update the number of phrases in case of new fragments
+      await this.updateUniqueCookies();
+    } 
 
     return userStatus;
   }
@@ -105,6 +109,13 @@ export default class User {
   /* Progress */
 
   /**
+   * Returns the number of currently available cookies.
+   */
+  public static async getAvailableCookies() {
+    return await Cookie.getAvailableCookies();
+  }
+
+  /**
    * Gets the number of unique cookies are still present for the user.
    */
   public static async getUniqueCookies() {
@@ -115,10 +126,23 @@ export default class User {
    * Sets number of cookies available for this user.
    * Sum of fragments sizes is the number of available cookies to generate.
    */
-  private static async initUniqueCookies() {
+  private static async initUniqueCookies(): Promise<void> {
     try {
-      const cookies: UniqueCookies = map.reduce((acc: number, val: number) => acc + val, 0)
+      const cookies: UniqueCookies = map.reduce((acc: number, val: number) => acc + val, 0);
       await db.setUniqueCookies(cookies);
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  /**
+   * Updates unique cookies counter if any progress is present.
+   */
+  private static async updateUniqueCookies(): Promise<void> {
+    try {
+      const cookies: UniqueCookies = map.reduce((acc: number, val: number) => acc + val, 0);
+      const currentProgress = await db.getHistory();
+      await db.setUniqueCookies(cookies - currentProgress.size);
     } catch (error) {
       console.error(error.message);
     }
