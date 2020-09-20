@@ -81,8 +81,6 @@ export default class Cookie {
     try {
       const currentPhrases: PhrasesCurrent = await db.getCurrentPhrases();
 
-      console.log(currentPhrases);
-
       if (!currentPhrases.size) return 3;
 
       let available = 3 - currentPhrases.size;
