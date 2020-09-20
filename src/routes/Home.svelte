@@ -10,6 +10,8 @@
   import FadingWrapper from "@src/layout/FadingWrapper.svelte";
   import MrCookie from "@components/MrCookie.svelte";
   import CookiePhrases from "@components/CookiePhrases.svelte";
+
+  import Information from "@components/Information.svelte";
   
   import modal from "@stores/modal";
   import Greetings from "@components/modals/Greetings.svelte";
@@ -95,6 +97,17 @@
       });
     }
   });
+
+  /** tell how many cookies are ready */
+  onMount(async () => {
+    const availableCookies = await User.getAvailableCookies();
+
+    notificationsCentre.addNotification({
+      text: `You have ${availableCookies} available cookies!`,
+      position: "bottom-left",
+      removeAfter: "5000"
+    });
+  });
 </script>
 
 <svelte:head>
@@ -109,6 +122,7 @@
         handleClick={dialogue}
         type={Math.random() > 0.5 ? "clever" : "glasses"} />
     </div>
+    <Information />
   </div>
 </FadingWrapper>
 
