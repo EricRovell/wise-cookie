@@ -75,6 +75,33 @@ export default class Cookie {
   }
 
   /**
+   * Returns the number of currently available cookies.
+   */
+  public static async getAvailableCookies(): Promise<number> {
+    try {
+      const currentPhrases: PhrasesCurrent = await db.getCurrentPhrases();
+
+      console.log(currentPhrases);
+
+      if (!currentPhrases.size) return 3;
+
+      let available = 3 - currentPhrases.size;
+
+      for (let phrase of currentPhrases.values()) {
+        if (Date.now() - phrase.timestamp > Cookie.COOKIE_TIME) {
+          available++;
+        }
+      }
+
+      return available;
+
+    } catch (error) {
+      console.error(error.message);
+      return 0;
+    }
+  }
+
+  /**
    * Returns how many time is left for specific cookie to be ready to consumed.
    */
   public static async getCookieTime(index: CookieIndex) {
